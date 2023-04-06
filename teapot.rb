@@ -13,7 +13,10 @@ define_target "picotls" do |target|
 	target.provides "Library/picotls" do
 		source_files = target.package.path + "picotls"
 		cache_prefix = environment[:build_prefix] / environment.checksum + "picotls"
-		package_files = cache_prefix / "lib/libpicotls-core.a"
+		package_files = [
+			cache_prefix / "lib/libpicotls-core.a",
+			cache_prefix / "lib/libpicotls-openssl.a",
+		]
 		
 		cmake source: source_files, install_prefix: cache_prefix, arguments: [
 			"-DBUILD_SHARED_LIBS=OFF",

@@ -10,6 +10,8 @@ define_target "picotls" do |target|
 	target.depends "Build/Make"
 	target.depends "Build/CMake"
 	
+	target.depends "Library/openssl", public: true
+	
 	target.provides "Library/picotls" do
 		source_files = target.package.path + "picotls"
 		cache_prefix = environment[:build_prefix] / environment.checksum + "picotls"
@@ -27,11 +29,19 @@ define_target "picotls" do |target|
 	end
 end
 
-define_configuration "picotls" do |configuration|
+define_configuration "development" do |configuration|
 	configuration[:source] = "https://github.com/kurocha/"
+	
+	configuration.import "picotls"
 	
 	configuration.require "platforms"
 	
 	configuration.require "build-make"
 	configuration.require "build-cmake"
+end
+
+define_configuration "picotls" do |configuration|
+	configuration.public!
+	
+	configuration.require "openssl"
 end

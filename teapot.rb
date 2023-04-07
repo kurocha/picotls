@@ -16,8 +16,8 @@ define_target "picotls" do |target|
 		source_files = target.package.path + "picotls"
 		cache_prefix = environment[:build_prefix] / environment.checksum + "picotls"
 		package_files = [
-			cache_prefix / "lib/libpicotls-core.a",
 			cache_prefix / "lib/libpicotls-openssl.a",
+			cache_prefix / "lib/libpicotls-core.a",
 		]
 		
 		cmake source: source_files, install_prefix: cache_prefix, arguments: [

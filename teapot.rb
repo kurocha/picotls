@@ -35,13 +35,13 @@ define_configuration "development" do |configuration|
 	configuration.import "picotls"
 	
 	configuration.require "platforms"
-	
-	configuration.require "build-make"
-	configuration.require "build-cmake"
 end
 
 define_configuration "picotls" do |configuration|
 	configuration.public!
+	
+	configuration.require "build-make"
+	configuration.require "build-cmake"
 	
 	configuration.require "openssl"
 end
